@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { @apply border-ink/10; }
+  body { @apply m-0 min-w-[320px] bg-canvas font-sans text-ink antialiased; }
+  button, input, textarea { font: inherit; }
+}
+
+@layer components {
+  .field { @apply w-full rounded-xl border border-ink/15 bg-white px-3.5 py-2.5 text-sm outline-none transition placeholder:text-ink/35 focus:border-ink focus:ring-2 focus:ring-lime/40; }
+  .label { @apply mb-1.5 block text-sm font-medium text-ink/80; }
+}
