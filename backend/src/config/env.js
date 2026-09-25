@@ -32,4 +32,22 @@ export const env = {
   elasticsearchUrl: process.env.ELASTICSEARCH_URL
 };
 
-export const redisConnection = { host: env.redisHost, port: env.redisPort };
+const redisUrl = process.env.REDIS_URL;
+
+export const redisConnection = redisUrl
+  ? (() => {
+      const url = new URL(redisUrl);
+
+      return {
+        host: url.hostname,
+        port: Number(url.port || 6379),
+        username: url.username || undefined,
+        password: url.password || undefined,
+        family: 0
+      };
+    })()
+  : {
+      host: env.redisHost,
+      port: env.redisPort,
+      family: 0
+    };
